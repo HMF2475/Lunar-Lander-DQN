@@ -2,7 +2,7 @@
 # import random
 # import time
 
- import torch
+# import torch
 # import tensorflow as tf
 
 from collections import deque
@@ -14,7 +14,7 @@ from lunar import LunarLanderEnv
 # https://www.nature.com/articles/nature14236 (Human level control through RL)
 # https://www.lesswrong.com/posts/kyvCNgx9oAwJCuevo/deep-q-networks-explained
 
-class DQN(torch.nn.Module):
+class DQN(torch.nn.Module/tf.keras.Model):
     def __init__(self, state_size, action_size, hidden_size):
         pass
     
