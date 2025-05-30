@@ -1,0 +1,3 @@
+## Google colab 2
+
+Muchisimo mejor que el anterior, al tener una cantidad de replays menor pudo aprender mejor de diferentes entornos sin quedarse estancado en uno, además que haya tenido menos episodios hizo que en los que estuvo explorará más aun entendiendo que debe dejarse caer al comienzo y luego encender el propulsor principal mientras se reposiciona con los laterales, sin llegar a tener una caida de lleno. Además la tasa de aprendizaje más baja hace que sea más estable y se compenso la posible lentitud bajando la cantidad de nueronas de la capa oculta a la mitad.

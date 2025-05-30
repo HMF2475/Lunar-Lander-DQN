@@ -1,0 +1,3 @@
+## Google colab 5
+
+Dado que tiene una tasa de aprendizaje más baja hubo que darle más episodios y como se vio que la exploracion nos está siendo muy util se puso que el minimo sea más alto. También es el que tiene menos nueronas de los 5, siendo solamente 64. Además la idea era forzar que aterrice lo más rapido posible bajando los pasos maximos que lo habiamos puesto en 500 para los demás a solamente 300, lo cual hizo que en la fase de entrenamiento siempre tuviera una recompensa inferior a 100. Pero el tiro salio por la culata, ya que lo que se logro es que nuevamente solo intentara estabilizarse, haciendo que no sepa aterrizar sino que solamente se mantenga en el aire.
