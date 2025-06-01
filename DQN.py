@@ -139,11 +139,6 @@ class DQNAgent():
 
 
 
-
-
-    # Para reproducibilidad en redes (pero puede hacer el entrenamiento más lento)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
           
     def act(self):
         """
@@ -166,7 +161,7 @@ class DQNAgent():
             self.q_network.eval() # Pone la red en modo evaluación para inferencia (para tomar decisiones, no entrenarse)
             
             with torch.no_grad(): # No necesitamos que se calculen gradientes, así que se deshabilita para que vaya más rapido y consumer menos mmemoria
-                q_values = self.q_network(state_tensor) # Pasamos el estado a la red para obtener los Q-valores
+                q_values = self.q_network(state_tensor) # Pasamos el estado a la red para obtener los Q-valores 
             
             self.q_network.train() # Volvemos a poner la red en modo entrenamiento para que pueda seguir aprendiendo
             
