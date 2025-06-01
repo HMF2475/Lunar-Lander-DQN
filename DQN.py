@@ -24,12 +24,13 @@ class DQN(nn.Module):
         self.hidden_size = hidden_size
         # Definimos la arquitectura de la red neuronal
         self.model = nn.Sequential(
-            nn.Linear(state_size, hidden_size),  # Input layer
-            nn.ReLU(),                            # Activation function
-            nn.Linear(hidden_size, hidden_size), # Hidden layer
-            nn.ReLU(),                            # Activation function
-            nn.Linear(hidden_size, action_size)  # Output layer
+            nn.Linear(state_size, hidden_size),  # Capa 1: input → primera oculta
+            nn.ReLU(),                           # Activación para la primera capa
+            nn.Linear(hidden_size, hidden_size), # Capa 2: segunda oculta
+            nn.ReLU(),                           # Activación para la segunda capa
+            nn.Linear(hidden_size, action_size)  # Capa de salida
         )
+
     def forward(self, x):
         return self.model(x)
   
