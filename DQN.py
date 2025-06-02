@@ -148,8 +148,7 @@ class DQNAgent():
         it can be the action with the highest Q-value from the model.
         """
         current_env_state = self.lunar.state #Obtenemos el estado actual del entorno
-        
-        
+
         if random.random() < self.epsilon: #Exploracion vs Explotacion tradeoff según epsilon
             action = self.lunar.env.action_space.sample()
             # Exploracion: Tomamos una acción aleatoria del espacio de acciones
@@ -165,7 +164,7 @@ class DQNAgent():
                 q_values = self.q_network(state_tensor) # Pasamos el estado a la red para obtener los Q-valores 
             
             self.q_network.train() # Volvemos a poner la red en modo entrenamiento para que pueda seguir aprendiendo
-            
+
             
             action = torch.argmax(q_values, dim=1).item() #Con argmax obtenemos el índice del Q-valor más alto, que corresponde a la acción a tomar
 
@@ -184,13 +183,8 @@ class DQNAgent():
         and updates the model using the computed loss.
         """
 
-        if(len(self.memory) < self.batch_size):
-            print("Not enough samples in memory to update the model")
-            return 0.0, 0.0, 0.0
-
-
         raw_states, raw_actions, raw_rewards, raw_next_states, raw_dones = self.memory.sample(self.batch_size)
-
+        #(estado1, accion1, recompensa1, estado2, done1), (estado2, accion2, recompensa2, estado3, done2), ...
 
         # Convertimos los datos a tensores de PyTorch y los movemos al dispositivo correcto
         # Aseguramos que los estados sean float32. Los entornos Gymnasium suelen devolver float32 o float64.
@@ -220,16 +214,16 @@ class DQNAgent():
         
         target_q_values = rewards + (self.gamma * next_q_values * (~dones)) # Calculamos los Q-valores objetivo usando la formula de Bellman
 
-        loss_fn = nn.MSELoss()
+        loss_fn = nn.MSELoss() 
         loss = loss_fn(current_q_values, target_q_values)  # la perdida entre los Q-valores actuales y los Q-valores objetivo
 
          
 
         #Optimizamos la red
-        self.optimizer.zero_grad()
-        loss.backward()
-
-        self.optimizer.step() # Actualizamos los pesos de la red q usando el optimizador
+        self.optimizer.zero_grad()   # Borramos los gradientes anteriores
+        loss.backward()              # Calculamos los nuevos gradientes
+        self.optimizer.step()        # Actualizamos los parámetros con los nuevos gradientes
+        # Actualizamos los pesos de la red q usando el optimizador
         
         avg_current_q = current_q_values.mean().item()
         avg_target_q = target_q_values.mean().item()
@@ -280,7 +274,6 @@ class DQNAgent():
         scores = []
         episode_logs = []  # Lista para guardar los resultados de cada episodio
         losses = []
-        epsilons = []
         steps_per_episode = []
 
         print("Starting training...")
@@ -289,7 +282,7 @@ class DQNAgent():
         for episode in range(self.episodes):
             self.lunar.reset() #Estado inicial del entorno
             
-
+ 
             total_reward = 0
             done = False
             steps = 0
@@ -301,6 +294,7 @@ class DQNAgent():
                 
                 total_reward += reward
                 steps += 1
+                
             episode_loss = 0.0
             episode_q_current = 0.0
             episode_q_target = 0.0
@@ -308,19 +302,21 @@ class DQNAgent():
 
             if len(self.memory) >= self.batch_size:
                 for _ in range(self.replays_per_episode):
-                    if len(self.memory) >= self.batch_size: # Ensure enough samples for each update
-                        loss_value, q_current, q_target = self.update_model()
-                        episode_loss += loss_value
-                        episode_q_current += q_current
-                        episode_q_target += q_target
-                        num_updates += 1
-                    else:
-                        break # Not enough memory for further updates this episode
+                    loss_value, q_current, q_target = self.update_model()
+
+                    # Para los graficos
+                    episode_loss += loss_value
+                    episode_q_current += q_current
+                    episode_q_target += q_target
+                    num_updates += 1
+                    
                 if num_updates > 0:
                     episode_loss /= num_updates
                     episode_q_current /= num_updates
                     episode_q_target /= num_updates
-
+            else:
+                print("Not enough samples in memory to update the model")
+                break 
 
             
             # Decay epsilon
@@ -342,11 +338,10 @@ class DQNAgent():
             })
             scores.append(total_reward)
             losses.append(episode_loss)
-            epsilons.append(self.epsilon)
             steps_per_episode.append(steps)  
 
             
-            if save_every_500 and (episode + 1) % 500 == 0: #Que se guarde el modelo cada 50 episodios por las dudas que se apague el ordenador xd
+            if save_every_500 and (episode + 1) % 500 == 0: #Que se guarde el modelo cada 500 episodios por las dudas que se apague el ordenador xd
                 self.save_model(f"modelos/modelo_DQN_episode_{episode+1}.h5")
             
         end_time = time.time()
@@ -356,7 +351,7 @@ class DQNAgent():
         #    print(f"Episodio {log['episodio']:4d} | Steps: {log['steps']:3d} | Score: {log['score']:7.2f} | Avg Loss: {log['avg_loss']:.4f} | Epsilon: {log['epsilon']:.3f} | Q-current mean values: {log['avg_q_current']:.2f} | Q-target mean values: {log['avg_q_target']:.2f}")
 
 
-        # Save the model after training
+        # Guardamos el modelo final
 
         self.save_model(f"{nombre_archivo}.h5" )
 
