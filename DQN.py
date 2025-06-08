@@ -64,7 +64,7 @@ class DQNAgent():
                 learning_rate=0.0005, batch_size=64, 
                 memory_size=100000, episodes=1500, 
                 target_network_update_freq=10,
-                replays_per_episode=64, hidden_size=128):
+                replays_per_episode=32, hidden_size=256):
         """
         Initialize the DQN agent with the given parameters.
         
