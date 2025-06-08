@@ -1,3 +1,4 @@
+## Datos teoricos
 - La principal ventaja de Deep Q-Learning (La Q-Network) sobre la Q-Table es que no tenemos que contar TODOS los estados posibles y cada accion para cada uno, sino que tenemos la Red Neuronal que tiene de entrada los valores que definen los estados y de salida las acciones posibles.
 - Tenemos 2 Redes neuronales, la target y la que entrenamos (principal)
     - 1º creamos una politica en la principal (random)
@@ -29,3 +30,9 @@
     - En comparación con optimizadores como SGD, Adam requiere menos ajuste fino de hiperparámetros y funciona mejor en entornos complejos como LunarLander.
 
 - La "E" quiere decir que es el promedio del error cuadratico medio
+
+
+## Muy importante antes de ejecutar
+- La carpeta EXTRAS antes no existia, así que los save y load pueden dar error. Para solucionarlo simplemente sacar los archivos que tiene adentro hacía la carpeta raíz.
+
+- Si se ejecuta el LunarRL y hay un modelo llamado modelo_DQN.h5 lo va a sobreescribir automaticamente sin advertencia, así que guardar aparte una vez ejecutado.
