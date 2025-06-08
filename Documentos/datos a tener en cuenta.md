@@ -28,3 +28,4 @@
     - Lograr una convergencia más rápida y estable, especialmente útil cuando se entrena con redes profundas y experiencias variadas.
     - En comparación con optimizadores como SGD, Adam requiere menos ajuste fino de hiperparámetros y funciona mejor en entornos complejos como LunarLander.
 
+- La "E" quiere decir que es el promedio del error cuadratico medio

@@ -16,6 +16,8 @@ from lunar import LunarLanderEnv
 # https://www.nature.com/articles/nature14236 (Human level control through RL)
 # https://www.lesswrong.com/posts/kyvCNgx9oAwJCuevo/deep-q-networks-explained
 
+
+
 class DQN(nn.Module):
     def __init__(self, state_size, action_size, hidden_size):
         super(DQN, self).__init__()
@@ -362,6 +364,8 @@ class DQNAgent():
 
        
 
+
+# Funciones auxiliares para imprimir el resumen del entrenamiento y graficar los resultados
 def print_summary(scores, losses, steps_per_episode, start_time, end_time):
     avg_score = sum(scores[-100:]) / min(100, len(scores))
     avg_loss = sum(losses) / len(losses) if losses else 0

@@ -8,7 +8,7 @@
 - Modelo lo resuelve en al menos 30% de los casos (mientras más porcentaje, mejor)
 - Documento en **Latex** y una presentación powerpoint:
 	- Minimo 6 páginas
-	- Seguir estructura general (incluso recomiendan la herramienta overleaf)
+	- Seguir estructura general
 	- En PDF
 	- Memoria con: Introducción, descripción algoritmos implementados (explicando dificultades y decisiones de diseño adoptadas para resolverlas), experimentación, descripcion de resultados alcanzados (con graficas de progreso de los modelos entrenados, conclusiones y bibliografia, pero **JAMÁS CODIGO EN LA MEMORIA**)
 	- 1 zip con la memoria, el modelo guardado en .keras o **.h5** (.h5 si vamos a usar pytorch), modulo para la resolucion del problema (**DQN.py**) que se ejecuta con **LunarRL.ipynb** y **lunar.py** (ESTOS NO SE PUEDEN MODIFICAR)
@@ -37,11 +37,11 @@
 
 
 ### Evaluación:
-- **Memoria** (1 punto): claridad de explicaciones, razonamiento de decisiones, analisis y presentacion de resultados, correcto uso del lenguaje. (No copiarse de nadie xd)
+- **Memoria** (1 punto): claridad de explicaciones, razonamiento de decisiones, analisis y presentacion de resultados, correcto uso del lenguaje.
 - **Busqueda solucion** (2 puntos): implementacion de la red segun el algoritmo y las dificultades presentadas. Sumaría la mejora de los algoritmos pero no es necesario
-- **Código fuente** (1 punto): claridad y buen estilo de programacion, correccion y eficiencia de la implementación, calidad de los comentarios (No copiarse o descargar de internet XD XD)
+- **Código fuente** (1 punto): claridad y buen estilo de programacion, correccion y eficiencia de la implementación, calidad de los comentarios
 - **Presentacion y defensa**: claridad y buena explicacion de los contenidos (sobretodo las respuestas a las preguntas del profe) lo que multiplica entre [0,1] tu nota total
-- Citar fuentes si o si o te ponen un cero NO PLAGIOS 
+- Citar fuentes 
 - Se puede usar IA explicando los promps, para que se usaron y demostrando en la defensa que se conoce y entiente la totalidad del trabajo, incluyendo las respuestas de ChatGPT
 
 
